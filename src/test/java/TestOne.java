@@ -34,7 +34,7 @@ public class TestOne {
                 .body("{\n" +
                         "    \"name\": \"Tenali Ramakrishna\",\n" +
                         "    \"gender\": \"male\",\n" +
-                        "    \"email\": \"tenalir4@gmail.com\",\n" +
+                        "    \"email\": \"tenalir8@gmail.com\",\n" +
                         "    \"status\": \"active\"\n" +
                         "}")
                 .when()

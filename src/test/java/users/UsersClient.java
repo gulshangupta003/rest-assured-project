@@ -14,13 +14,13 @@ public class UsersClient {
                     .header("Authorization", "Bearer 457a143dbd57bef631313eb0e02b0777a8d268c3ae52c43ea34aa4581d7e0ed5")
                     .body(body)
                 .when()
-                    .post("https://gorest.co.in/public/v2/users");
+                    .post("https://gorest.co.in/public/v1/users");
     }
 
     public static Response getAllUsers() {
         return
                 given()
                     .when()
-                        .get("https://gorest.co.in/public/v2/users");
+                        .get("https://gorest.co.in/public/v1/users");
     }
 }

@@ -28,7 +28,7 @@ public class CreateUserNegativeTests {
 
         // 3. Assert
                     .statusCode(422)
-                    .body("", Matchers.hasItem(Matchers.hasEntry("field", "email")))
-                    .body("", Matchers.hasItem(Matchers.hasEntry("message", "has already been taken")));
+                    .body("data", Matchers.hasItem(Matchers.hasEntry("field", "email")))
+                    .body("data", Matchers.hasItem(Matchers.hasEntry("message", "has already been taken")));
     }
 }

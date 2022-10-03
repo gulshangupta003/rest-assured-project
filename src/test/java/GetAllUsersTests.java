@@ -19,8 +19,8 @@ public class GetAllUsersTests {
                 .then()
     // 3.   Assert
                     .statusCode(200)
-                    .body("", Matchers.hasSize(10))
-                    .body("", Matchers.hasItem(Matchers.hasEntry("gender", "male")))
+                    .body("data", Matchers.hasSize(10))
+                    .body("data", Matchers.hasItem(Matchers.hasEntry("gender", "male")))
                     .log().body();
     }
 }

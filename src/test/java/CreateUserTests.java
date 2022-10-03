@@ -29,13 +29,13 @@ public class CreateUserTests {
         // 2. Act
         usersClient.createUser(body)
                     .then()
-                    .log().body()
+                        .log().body()
 
         // 3. Assert
-                    .statusCode(201)
-                    .body("id", Matchers.notNullValue())
-                    .body("email", Matchers.equalTo(email))
-                    .body("name", Matchers.equalTo("Tenali R"));
+                        .statusCode(201)
+                        .body("data.id", Matchers.notNullValue())
+                        .body("data.email", Matchers.equalTo(email))
+                        .body("data.name", Matchers.equalTo("Tenali R"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class CreateUserTests {
 
         // 3. Assert
                     .statusCode(201)
-                    .body("id", Matchers.notNullValue())
-                    .body("email", Matchers.equalTo(email));
+                    .body("data.id", Matchers.notNullValue())
+                    .body("data.email", Matchers.equalTo(email));
     }
 }

@@ -19,7 +19,7 @@ public class CreateUserNegativeTests {
         CreateUserRequestBody requestBody = CreateUserRequestBody.builder()
                 .name("Tenali Ramakrishna")
                 .gender("male")
-                .email("tenalir@gmail.com")
+                .email("tenalirgmail.com")
                 .status("active")
                 .build();
 
@@ -31,6 +31,6 @@ public class CreateUserNegativeTests {
         // 3. Assert
                     .statusCode(422)
                     .body("data", Matchers.hasItem(Matchers.hasEntry("field", "email")))
-                    .body("data", Matchers.hasItem(Matchers.hasEntry("message", "has already been taken")));
+                    .body("data", Matchers.hasItem(Matchers.hasEntry("message", "is invalid")));
     }
 }

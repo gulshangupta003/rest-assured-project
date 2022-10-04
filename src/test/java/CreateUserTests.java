@@ -1,5 +1,3 @@
-import org.hamcrest.Matchers;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
@@ -34,12 +32,8 @@ public class CreateUserTests {
         // 2. Act
         CreateUserResponse createUserResponse = usersClient.createUser(requestBody);
 
-
         // 3. Assert
-
-        assertEquals(createUserResponse.getStatusCode(), 201);
-        assertNotNull(createUserResponse.getData().getId());
-        assertEquals(createUserResponse.getData().getEmail(), requestBody.getEmail());
+        createUserResponse.assertUser(requestBody);
     }
 
     @Test
@@ -58,8 +52,6 @@ public class CreateUserTests {
         CreateUserResponse createUserResponse = usersClient.createUser(requestBody);
 
         // 3. Assert
-        assertEquals(createUserResponse.getStatusCode(), 201);
-        assertNotNull(createUserResponse.getData().getId());
-        assertEquals(createUserResponse.getData().getEmail(), requestBody.getEmail());
+        createUserResponse.assertUser(requestBody);
     }
 }

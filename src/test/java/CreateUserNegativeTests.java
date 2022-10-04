@@ -24,13 +24,12 @@ public class CreateUserNegativeTests {
                 .build();
 
         // 2. Act
-        usersClient.createUser(requestBody)
-                .then()
-                    .log().body()
+        usersClient.create(requestBody)
 
         // 3. Assert
-                    .statusCode(422)
-                    .body("data", Matchers.hasItem(Matchers.hasEntry("field", "email")))
-                    .body("data", Matchers.hasItem(Matchers.hasEntry("message", "is invalid")));
+            .then()
+                .statusCode(422)
+                .body("data", Matchers.hasItem(Matchers.hasEntry("field", "email")))
+                .body("data", Matchers.hasItem(Matchers.hasEntry("message", "is invalid")));
     }
 }

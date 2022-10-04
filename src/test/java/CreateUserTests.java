@@ -1,10 +1,14 @@
 import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
 import users.create.CreateUserRequestBody;
+import users.create.response.CreateUserResponse;
 
 import java.util.UUID;
+
+import static org.testng.Assert.*;
 
 
 public class CreateUserTests {
@@ -28,15 +32,14 @@ public class CreateUserTests {
                 .build();
 
         // 2. Act
-        usersClient.createUser(requestBody)
-                    .then()
-                        .log().body()
+        CreateUserResponse createUserResponse = usersClient.createUser(requestBody);
+
 
         // 3. Assert
-                        .statusCode(201)
-                        .body("data.id", Matchers.notNullValue())
-                        .body("data.email", Matchers.equalTo(email))
-                        .body("data.name", Matchers.equalTo("Tenali R"));
+
+        assertEquals(createUserResponse.getStatusCode(), 201);
+        assertNotNull(createUserResponse.getData().getId());
+        assertEquals(createUserResponse.getData().getEmail(), requestBody.getEmail());
     }
 
     @Test
@@ -52,13 +55,11 @@ public class CreateUserTests {
                 .build();
 
         // 2. Act
-        usersClient.createUser(requestBody)
-                .then()
-                    .log().body()
+        CreateUserResponse createUserResponse = usersClient.createUser(requestBody);
 
         // 3. Assert
-                    .statusCode(201)
-                    .body("data.id", Matchers.notNullValue())
-                    .body("data.email", Matchers.equalTo(email));
+        assertEquals(createUserResponse.getStatusCode(), 201);
+        assertNotNull(createUserResponse.getData().getId());
+        assertEquals(createUserResponse.getData().getEmail(), requestBody.getEmail());
     }
 }

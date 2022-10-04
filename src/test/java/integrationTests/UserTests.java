@@ -20,14 +20,7 @@ public class UserTests {
     @Test
     public void shouldCreateAndGetUser() {
         // 1. Arrange
-        String email = String.format("%s@gmail.com", UUID.randomUUID());
-
-        CreateUserRequestBody requestBody = CreateUserRequestBody.builder()
-                .name("Tenali R")
-                .gender("male")
-                .email(email)
-                .status("active")
-                .build();
+        CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().build();
 
         // 2. Act
         int id = usersClient.createUser(requestBody).getData().getId();

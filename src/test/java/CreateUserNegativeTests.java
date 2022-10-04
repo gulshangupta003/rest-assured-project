@@ -1,5 +1,3 @@
-import org.hamcrest.Matchers;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
@@ -19,13 +17,7 @@ public class CreateUserNegativeTests {
     @Test
     public void shouldNotAllowToCreateUserWithInvalidEmail() {
         // 1. Arrange
-
-        CreateUserRequestBody requestBody = CreateUserRequestBody.builder()
-                .name("Tenali Ramakrishna")
-                .gender("male")
-                .email("tenalirgmail.com")
-                .status("active")
-                .build();
+        CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().email("tenalirgmail.com").build();
 
         // 2. Act
         CreateUserErrorResponse errorResponse = usersClient.createUserExpectingError(requestBody);
@@ -38,12 +30,7 @@ public class CreateUserNegativeTests {
     @Test
     public void shouldNotAllowToCreateUserWithBlankGenderAndStatus() {
         // 1. Arrange
-        CreateUserRequestBody requestBody = CreateUserRequestBody.builder()
-                .name("Tenali Ramakrishna")
-                .gender("")
-                .email("tenalir3@gmail.com")
-                .status("")
-                .build();
+        CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().gender("").status("").build();
 
         // 2. Act
         CreateUserErrorResponse errorResponse = usersClient.createUserExpectingError(requestBody);

@@ -12,6 +12,9 @@ repositories {
 dependencies {
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.2.0'
     testImplementation group: 'org.testng', name: 'testng', version: '7.6.1'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
 }
 
 test {

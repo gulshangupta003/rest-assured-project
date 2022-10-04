@@ -20,14 +20,7 @@ public class CreateUserTests {
     @Test
     public void shouldCreateMaleUser() {
         // 1. Arrange
-        String email = String.format("%s@gmail.com", UUID.randomUUID());
-
-        CreateUserRequestBody requestBody = CreateUserRequestBody.builder()
-                .name("Tenali R")
-                .gender("male")
-                .email(email)
-                .status("active")
-                .build();
+        CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().gender("male").build();
 
         // 2. Act
         CreateUserResponse createUserResponse = usersClient.createUser(requestBody);
@@ -39,14 +32,7 @@ public class CreateUserTests {
     @Test
     public void shouldCreateFemaleUser() {
         // 1. Arrange
-        String email = String.format("%s@gmail.com", UUID.randomUUID());
-
-        CreateUserRequestBody requestBody = CreateUserRequestBody.builder()
-                .name("Rishi K")
-                .gender("female")
-                .email(email)
-                .status("active")
-                .build();
+        CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().gender("female").build();
 
         // 2. Act
         CreateUserResponse createUserResponse = usersClient.createUser(requestBody);

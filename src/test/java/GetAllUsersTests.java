@@ -1,8 +1,7 @@
-import org.hamcrest.Matchers;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
+import users.UsersService;
 import users.getAll.GetAllUsersResponse;
 
 import static org.testng.Assert.*;
@@ -10,17 +9,17 @@ import static org.testng.Assert.*;
 
 public class GetAllUsersTests {
     // 1. Arrange
-    private UsersClient usersClient;
+    private UsersService usersService;
 
     @BeforeClass
     public void beforeClass() {
-        usersClient = new UsersClient();
+        usersService = new UsersService();
     }
 
     @Test
     public void shouldGetAllUsers() {
         // 2. Act
-        GetAllUsersResponse getAllUsersResponse = usersClient.getAllUsers();
+        GetAllUsersResponse getAllUsersResponse = usersService.getAllUsers();
 
         // 3. Assert
         assertEquals(getAllUsersResponse.getStatucCode(), 200);

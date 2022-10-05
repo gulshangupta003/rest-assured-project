@@ -1,17 +1,18 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
+import users.UsersService;
 import users.create.CreateUserRequestBody;
 import users.create.response.CreateUserErrorResponse;
 
 import static org.testng.Assert.*;
 
 public class CreateUserNegativeTests {
-    private UsersClient usersClient;
+    private UsersService usersService;
 
     @BeforeClass
     public void beforeClass() {
-        usersClient = new UsersClient();
+        usersService = new UsersService();
     }
 
     @Test
@@ -20,7 +21,7 @@ public class CreateUserNegativeTests {
         CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().email("tenalirgmail.com").build();
 
         // 2. Act
-        CreateUserErrorResponse errorResponse = usersClient.createUserExpectingError(requestBody);
+        CreateUserErrorResponse errorResponse = usersService.createUserExpectingError(requestBody);
 
         // 3. Assert
         assertEquals(errorResponse.getStatusCode(), 422);
@@ -33,7 +34,7 @@ public class CreateUserNegativeTests {
         CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().gender("").status("").build();
 
         // 2. Act
-        CreateUserErrorResponse errorResponse = usersClient.createUserExpectingError(requestBody);
+        CreateUserErrorResponse errorResponse = usersService.createUserExpectingError(requestBody);
 
         // 3. Assert
         assertEquals(errorResponse.getStatusCode(), 422);

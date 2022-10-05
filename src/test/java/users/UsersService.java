@@ -4,6 +4,7 @@ import io.restassured.response.Response;
 import users.create.CreateUserRequestBody;
 import users.create.response.CreateUserErrorResponse;
 import users.create.response.CreateUserResponse;
+import users.get.GetUserErrorResponse;
 import users.get.GetUsersResponse;
 import users.getAll.GetAllUsersResponse;
 
@@ -39,6 +40,21 @@ public class UsersService {
         return getUsersResponse;
     }
 
+    public GetUserErrorResponse getUserExpectingError(int id) {
+        Response response = new UsersClient().get(id);
+        response
+                .then()
+                .log().body();
+
+        int statusCode = response.statusCode();
+
+        GetUserErrorResponse getUserErrorResponse = response.as(GetUserErrorResponse.class);
+        getUserErrorResponse.setStatusCode(statusCode);
+
+        return getUserErrorResponse;
+    }
+
+
     public static GetAllUsersResponse getAllUsers() {
         Response response = new UsersClient().getAll();
 
@@ -48,5 +64,15 @@ public class UsersService {
         getAllUsersResponse.setStatucCode(statusCode);
 
         return getAllUsersResponse;
+    }
+
+    public int deleteUser(int id) {
+        Response response = new UsersClient().delete(id);
+
+        response
+                .then()
+                    .log().body();
+
+        return response.statusCode();
     }
 }

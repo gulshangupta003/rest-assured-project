@@ -1,5 +1,6 @@
 package integrationTests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UsersClient;
@@ -28,5 +29,21 @@ public class UserTests {
 
         // 3. Assert
         usersService.getUser(id).assertUser(requestBody);
+    }
+
+    @Test
+    public void shouldDeleteUser() {
+        // 1. Arrange
+        CreateUserRequestBody requestBody = new CreateUserRequestBody.Builder().build();
+
+        // 2. Act
+        int id = usersService.createUser(requestBody).getData().getId();
+        int statusCode = usersService.deleteUser(id);
+
+        // 3. Assert
+        Assert.assertEquals(statusCode, 204);
+
+        usersService.getUserExpectingError(id)
+                .assertError(404, "Resource not found");
     }
 }
